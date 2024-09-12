@@ -3,7 +3,7 @@ name: Start SonarQube on EC2
 
 on:
   workflow_dispatch:  # Allows manual triggering of the workflow
-
+  
 jobs:
   start-sonarqube:
     runs-on: ubuntu-latest
