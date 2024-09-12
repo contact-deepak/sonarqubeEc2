@@ -20,8 +20,31 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}  # The SSH private key added as a GitHub secret
           port: 22
           script: |
-            # Switch to 'sonar' user and start SonarQube
-            sudo -u sonar bash <<EOF
-            cd /opt/sonarqube-7.6/bin/linux-x86-64
-            ./sonar.sh start
-            EOF
+            sudo su sonar  # Switch to the sonar user
+            cd /opt
+            # .github/workflows/start-sonarqube.yml
+name: Start SonarQube on EC2
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  start-sonarqube:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Start SonarQube on EC2
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.EC2_PUBLIC_IP }}  # Add your EC2 public IP as a secret
+          username: ec2-user  # Use the username for your instance type (e.g., ec2-user or ubuntu)
+          key: ${{ secrets.EC2_SSH_KEY }}  # The SSH private key added as a GitHub secret
+          port: 22
+          script: |
+            sudo su sonar  # Switch to the sonar user
+            cd /opt
+            ls -l
+
