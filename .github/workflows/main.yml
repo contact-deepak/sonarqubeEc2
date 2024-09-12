@@ -20,5 +20,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}  # The SSH private key added as a GitHub secret
           port: 22
           script: |
+            # Switch to 'sonar' user and start SonarQube
+            sudo -u sonar bash <<EOF
             cd /opt/sonarqube-7.6/bin/linux-x86-64
             ./sonar.sh start
+            EOF
