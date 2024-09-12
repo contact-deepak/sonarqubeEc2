@@ -2,7 +2,9 @@
 name: Start SonarQube on EC2
 
 on:
-  workflow_dispatch:  # Allows manual triggering of the workflow
+  push:
+    branches:
+      - main
   
 jobs:
   start-sonarqube:
