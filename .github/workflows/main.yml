@@ -26,4 +26,4 @@ jobs:
             cd /opt
             ls -l  # List files in the /opt directory
             cd /opt/sonarqube-7.6/bin/linux-x86-64
-            ./sonar.sh start  # Start SonarQube
+            ./sonar.sh stop
