@@ -24,6 +24,6 @@ jobs:
           script: |
             sudo su sonar  # Switch to the sonar user
             cd /opt
-            ls -l  # List files in the /opt directory
             cd /opt/sonarqube-7.6/bin/linux-x86-64
-            sudo ./sonar.sh stop
+            ./sonar.sh start
+
