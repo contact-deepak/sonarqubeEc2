@@ -22,5 +22,5 @@ jobs:
           port: 22
           script: |
             echo "${{ secrets.SONAR_PASSWORD }}" | sudo -S su - sonar  # Switch to the sonar user
-            cd /opt/sonarqube-7.6/bin/linux-x86-64
-            ./sonar.sh start
+            ls -l
+           
