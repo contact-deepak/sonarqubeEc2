@@ -22,5 +22,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}  # The SSH private key added as a GitHub secret
           port: 22
           script: |
-            ls -l
+            sudo ls -l
 
