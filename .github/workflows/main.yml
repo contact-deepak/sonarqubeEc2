@@ -1,15 +1,18 @@
-name: sonarqube
+name: Start SonarQube on EC2
 
 on:
   push:
     branches:
       - main  # Trigger the workflow on pushes to the main branch
+
 jobs:
   start-sonarqube:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Start SonarQube on EC2
         uses: appleboy/ssh-action@v0.1.5
         with:
@@ -18,5 +21,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}  # The SSH private key added as a GitHub secret
           port: 22
           script: |
-            su ec2-user | echo "${{ secrets.SONAR_PASSWORD }}"
-            ls -l
+            echo "${{ secrets.SONAR_PASSWORD }}" | sudo -S su - sonar  # Switch to the sonar user
+            cd /opt/sonarqube-7.6/bin/linux-x86-64
+            ./sonar.sh start
