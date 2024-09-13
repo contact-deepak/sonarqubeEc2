@@ -18,6 +18,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}  # The SSH private key added as a GitHub secret
           port: 22
           script: |
-            su ec2-user
-            echo "${{ secrets.SONAR_PASSWORD }}"
+            su ec2-user | echo "${{ secrets.SONAR_PASSWORD }}"
             ls -l
